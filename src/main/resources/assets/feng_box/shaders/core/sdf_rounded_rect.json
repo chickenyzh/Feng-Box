@@ -1,0 +1,63 @@
+{
+    "blend": {
+        "func": "add",
+        "srcrgb": "srcalpha",
+        "dstrgb": "1-srcalpha"
+    },
+    "vertex": "feng_box:sdf_rounded_rect",
+    "fragment": "feng_box:sdf_rounded_rect",
+    "attributes": [
+        "Position",
+        "Color"
+    ],
+    "uniforms": [
+        {
+            "name": "uScreenSize",
+            "type": "vec2",
+            "count": 1,
+            "values": [1920.0, 1080.0]
+        },
+        {
+            "name": "uScale",
+            "type": "float",
+            "count": 1,
+            "values": [1.0]
+        },
+        {
+            "name": "uRectPos",
+            "type": "vec2",
+            "count": 1,
+            "values": [0.0, 0.0]
+        },
+        {
+            "name": "uRectSize",
+            "type": "vec2",
+            "count": 1,
+            "values": [100.0, 50.0]
+        },
+        {
+            "name": "uRadius",
+            "type": "float",
+            "count": 1,
+            "values": [8.0]
+        },
+        {
+            "name": "uSmoothness",
+            "type": "float",
+            "count": 1,
+            "values": [1.2]
+        },
+        {
+            "name": "uBorderWidth",
+            "type": "float",
+            "count": 1,
+            "values": [0.0]
+        },
+        {
+            "name": "uDebug",
+            "type": "int",
+            "count": 1,
+            "values": [0]
+        }
+    ]
+}

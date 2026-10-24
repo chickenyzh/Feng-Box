@@ -1,0 +1,71 @@
+plugins {
+    id 'fabric-loom' version '1.14.10'
+    id 'maven-publish'
+}
+
+version = '1.0.0'
+group = 'com.example'
+
+base {
+    archivesName = 'fengbox-addon-example'
+}
+
+repositories {
+    maven {
+        name = 'Fabric'
+        url = 'https://maven.fabricmc.net/'
+    }
+    mavenCentral()
+    // Feng Box 主 mod 的本地 Maven 仓库（如果需要引用主 mod 的 API）
+    flatDir {
+        dirs '../build/libs'
+    }
+}
+
+dependencies {
+    // Minecraft + Fabric
+    minecraft "com.mojang:minecraft:1.21.11"
+    mappings "net.fabricmc:yarn:1.21.11+build.1:v2"
+    modImplementation "net.fabricmc:fabric-loader:0.16.9"
+
+    // Feng Box 主 mod（通过 flatDir 引入编译后的 jar）
+    modImplementation name: 'feng_box-1.0.0-1.21.11-v56'
+}
+
+processResources {
+    inputs.property "version", project.version
+    filteringCharset "UTF-8"
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+def targetJavaVersion = 21
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = targetJavaVersion
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+    }
+    withSourcesJar()
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.base.archivesName.get()}"}
+    }
+}
+
+// 可选：发布到 Maven 仓库
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        // 添加你的 Maven 仓库地址
+    }
+}

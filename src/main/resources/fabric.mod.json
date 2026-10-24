@@ -1,0 +1,34 @@
+{
+	"schemaVersion": 1,
+	"id": "feng_box",
+	"version": "${version}",
+	"name": "Feng Box",
+	"description": "Feng Box (ported to 1.21.11)",
+	"authors": [
+		"chickenyzh",
+		"du"
+	],
+	"contact": {
+		"sources": "https://github.com/chickenyzh/feng_box"
+	},
+	"license": "MIT",
+	"icon": "assets/feng_box/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"main": [
+			"com.fengbox.FengBox"
+		],
+		"client": [
+			"com.fengbox.FengBoxClient"
+		]
+	},
+	"mixins": [
+		"feng_box.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.0",
+		"fabric-api": "*",
+		"minecraft": "~1.21.11",
+		"java": ">=21"
+	}
+}

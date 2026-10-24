@@ -1,0 +1,28 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.fengbox.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "AbstractClientPlayerEntityMixin",
+    "EntityRendererMixin",
+    "GameRendererMixin",
+    "InGameHudMixin",
+    "ClientPlayNetworkHandlerMixin",
+    
+    "TitleScreenMixin",
+    "SelectWorldScreenMixin",
+    "EntryListWidgetMixin",
+    "PostEffectProcessorAccessor",
+    "ItemEntityRendererMixin",
+    "MaceItemMixin",
+    "TridentItemMixin",
+    "KineticWeaponComponentMixin"
+  ],
+  "mixins": [
+    "PlayerEntityReachMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

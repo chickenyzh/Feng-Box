@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "fengbox-addon-example",
+  "version": "1.0.0",
+  "name": "Feng Box Addon Example",
+  "description": "Feng Box 附属 mod 示例，展示如何注册自定义功能模块",
+  "authors": ["Your Name"],
+  "contact": {
+    "homepage": "https://github.com/yourname/fengbox-addon-example",
+    "sources": "https://github.com/yourname/fengbox-addon-example"
+  },
+  "license": "MIT",
+  "icon": "assets/fengbox-addon-example/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.example.fengboxaddon.AddonExample"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "feng_box": ">=1.0.0"
+  },
+  "suggests": {
+    "fabric-api": "*"
+  }
+}
