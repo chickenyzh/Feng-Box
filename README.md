@@ -153,6 +153,7 @@ Feng Box 是一款面向 Minecraft 1.21.11（Fabric）的 PvP 实用模组，专
 
 | 版本 | 主要改动 |
 |------|---------|
+| v59 | 修复面板滚动条滑块越出面板：滑块可移动区间由「轨道长度」修正为「轨道长度 − 滑块长度」，并对滑块位置做区间夹紧，滚动到底部时滑块不再伸出面板底边 |
 | v58 | 修复 Click GUI 全部设置项不生效：设置项与模块开关改为与客户端后端字段双向绑定（开关直接切换模块启用状态，数值/模式改动即时写入运行字段）；补齐 `Velocity Flight`、`Dummy Interact` 缺失的后端开关字段；`freecamSpeed` 由不可写常量改为可调字段 |
 | v57 | 修复启动崩溃：移除对 `LevelRenderer.render` 的失效 Mixin 注入，世界渲染改由 Fabric API `WorldRenderEvents.END_MAIN` 回调驱动；fabric.mod.json 声明 fabric-api 依赖；清理残留 refmap 引用 |
 | v56 | 修复 fabric.mod.json 自引用依赖导致加载失败的问题；统一包名与 README 文档 |

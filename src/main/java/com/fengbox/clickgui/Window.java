@@ -127,7 +127,16 @@ public class Window {
                 int sbX = x + width - 3;
                 int sbTrackH = height - TITLE_BAR_HEIGHT - 2;
                 int sbThumbH = Math.max(8, (int)(sbTrackH * ((float)MAX_VISIBLE_HEIGHT / innerHeight)));
-                int sbThumbY = contentTop + 1 + (int)(sbTrackH * ((float)scrollOffset / (innerHeight - MAX_VISIBLE_HEIGHT)));
+                // 滑块高度不得超过轨道长度，否则会越过轨道底部
+                sbThumbH = Math.min(sbThumbH, sbTrackH);
+                // 滑块自身的可移动区间是 (轨道长 - 滑块长)，必须减去 sbThumbH，
+                // 否则滚动到底部时滑块会伸到轨道之外、越出面板底边
+                int sbThumbY = contentTop + 1 + (int)((sbTrackH - sbThumbH)
+                        * ((float)scrollOffset / (innerHeight - MAX_VISIBLE_HEIGHT)));
+                // 二次夹紧，确保滑块始终完整落在轨道范围内
+                int sbMinY = contentTop + 1;
+                int sbMaxY = contentTop + 1 + sbTrackH - sbThumbH;
+                sbThumbY = Math.max(sbMinY, Math.min(sbThumbY, sbMaxY));
                 ctx.fill(sbX, contentTop + 1, sbX + 2, contentTop + 1 + sbTrackH, 0xFF333333);
                 ctx.fill(sbX, sbThumbY, sbX + 2, sbThumbY + sbThumbH, 0xFFCC0000);
             }
