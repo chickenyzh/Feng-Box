@@ -66,6 +66,8 @@ public abstract class Module {
     protected BooleanSetting createEnabledSetting() {
         BooleanSetting setting = new BooleanSetting("Enabled", "切换该模块", false);
         setting.bind(this::isEnabled, this::setEnabled);
+        // 标记为模块开关，GUI 才会用「模块名: 开/关」显示；其余布尔项显示自己的名字
+        setting.markAsModuleToggle();
         return setting;
     }
 

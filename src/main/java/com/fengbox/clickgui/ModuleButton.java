@@ -166,11 +166,16 @@ public class ModuleButton {
             boolean hover = mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
             int bg = hover ? 0xFF333333 : 0xFF1A1A1A;
             ctx.fill(x, y, x + width, y + height, bg);
-            // 用模块中文名替换"Enabled"，显示为"功能名: 开/关"
-            String moduleName = (parent != null && parent.getModule() != null)
-                ? parent.getModule().getDisplayName()
-                : setting.getName();
-            String label = moduleName + ": " + (setting.getValue() ? "开启" : "关闭");
+            // 仅模块自身的开关用「模块名: 开/关」显示；
+            // 其余布尔设置项必须显示自己的名字，否则同一模块下的多个布尔项会全部
+            // 显示成同一个模块名，看起来就是一堆重复的设置项。
+            String baseName;
+            if (setting.isModuleToggle() && parent != null && parent.getModule() != null) {
+                baseName = parent.getModule().getDisplayName();
+            } else {
+                baseName = setting.getName();
+            }
+            String label = baseName + ": " + (setting.getValue() ? "开启" : "关闭");
             int color = setting.getValue() ? 0xFFFF5555 : 0xFF888888;
             ctx.drawText(MinecraftClient.getInstance().textRenderer, label, x + 2, y + 2, color, false);
         }
